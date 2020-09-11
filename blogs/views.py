@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from .models import BlogPost
@@ -13,7 +13,7 @@ def index(request):
 
 
 def blog(request, blog_id):
-    blog = BlogPost.objects.get(id=blog_id)
+    blog = get_object_or_404(BlogPost, id=blog_id)
     context = {'blog': blog}
     return render(request, 'blogs/blog.html', context)
 
@@ -36,7 +36,7 @@ def new_blog(request):
 
 @login_required
 def edit_blog(request, blog_id):
-    blog = BlogPost.objects.get(id=blog_id)
+    blog = get_object_or_404(BlogPost, id=blog_id)
     if blog.owner != request.user:
         owner = False
     else:
