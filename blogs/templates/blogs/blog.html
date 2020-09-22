@@ -13,9 +13,12 @@
         <div class="card-header">
             <h4 class="card-title">
                 {{ blog.title }}
+                {% if blog.owner|stringformat:"s" == user.username %}
                 <small><a href="{% url 'blogs:edit_blog' blog.id %}">Edit blog</a></small>
+                {% endif %}
+                <small class="card-subtitle text-muted float-right">{{ blog.date_added|date:'M d, Y H:i' }}</small>
+                <footer class="blockquote-footer"><cite title="Source Title">{{ blog.owner }}</cite></footer>
             </h4>
-            <h6 class="card-subtitle text-muted">{{ blog.date_added|date:'M d, Y H:i' }}</h6>
         </div>
         <div class="card-body">
             {{ blog.text|linebreaks }}
