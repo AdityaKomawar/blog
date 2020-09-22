@@ -13,6 +13,7 @@
     <a href="{% url 'blogs:blog' b.id %}" class="list-group-item list-group-item-action">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">{{ b.title }}</h5>
+          <footer class="blockquote-footer"><cite title="Source Title">{{ b.owner }}</cite></footer>
           <small class="text-muted">{{ b.date_added|date:'M d, Y H:i' }}</small>
         </div>
     </a>
